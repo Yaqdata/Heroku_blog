@@ -1,0 +1,4 @@
+# Yaq 2013/12/4
+venv
+*.pyc
+staticfiles
