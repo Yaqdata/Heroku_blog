@@ -1,4 +1,6 @@
 # Yaq 2013/12/4
 venv
 *.pyc
+.project 
+.pydevproject
 staticfiles

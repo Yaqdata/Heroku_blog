@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+print BASE_DIR
 
+import sys
+sys.path.append(BASE_DIR+'/hellodjango/website/')
+sys.path.append(BASE_DIR+'/hellodjango/module/')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -36,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mobile',
 )
 
 MIDDLEWARE_CLASSES = (
