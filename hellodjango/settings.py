@@ -60,6 +60,7 @@ WSGI_APPLICATION = 'hellodjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
+# setting database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -103,3 +104,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+# add by Yaq
+# 2013/12/12
+TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'website/mobile/templates').replace('\\','/'),
+)
+
+SITE_DOMAIN = '127.0.0.1:8000'
+MEDIA_URL = 'http://%s/' % (SITE_DOMAIN)
+print MEDIA_URL
