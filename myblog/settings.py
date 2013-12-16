@@ -1,5 +1,5 @@
 """
-Django settings for hellodjango project.
+Django settings for myblog project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -11,17 +11,16 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-print BASE_DIR
 
 import sys
-sys.path.append(BASE_DIR+'/hellodjango/website/')
-sys.path.append(BASE_DIR+'/hellodjango/module/')
+sys.path.append(BASE_DIR+"/myblog/website/")
+sys.path.append(BASE_DIR+"/myblog/module/")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&2(!k9imq6ea#7eq!tz*zebrt-ne&-8ujdb)8w3!jt+zvr%xch'
+SECRET_KEY = 'k4i25gs=7ro%km+e#03mb+vcn!d-gm!l8n5ternm$ipn=1t2ha'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mobile',
+    'books',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,19 +51,22 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'hellodjango.urls'
+ROOT_URLCONF = 'myblog.urls'
 
-WSGI_APPLICATION = 'hellodjango.wsgi.application'
+WSGI_APPLICATION = 'myblog.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-# setting database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'myblog',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -86,30 +88,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# Yaq dj_database_url
-
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-ALLOWED_HOSTS = ['*']
-
-import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-# add by Yaq
-# 2013/12/12
-TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'website/mobile/templates').replace('\\','/'),
-)
-
-SITE_DOMAIN = '127.0.0.1:8000'
-MEDIA_URL = 'http://%s/' % (SITE_DOMAIN)
-print MEDIA_URL
