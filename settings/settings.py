@@ -104,4 +104,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
+SITE_DOMAIN = 'ec2-107-21-100-118.compute-1.amazonaws.com'
+MEDIA_URL = 'http://%s/' % (SITE_DOMAIN)
 STATIC_URL = '/static/'
