@@ -4,8 +4,6 @@ from module.blog.models import Post
 
 def index(request):
     posts = Post.objects.filter(published=True)
-    print posts
-    print posts[0].get_absolute_url()
     return render(request, 'blog/index.html', {'posts': posts})
 
 def post(request, slug):
