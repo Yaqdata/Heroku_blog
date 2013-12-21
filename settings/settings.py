@@ -97,8 +97,11 @@ STATICFILES_DIRS = (
 print TEMPLATE_DIRS
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
 
-SITE_DOMAIN = '127.0.0.1:8086'
-MEDIA_URL = 'http://%s/' % (SITE_DOMAIN)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
+
 STATIC_URL = '/static/'
-print STATIC_URL
