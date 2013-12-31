@@ -2,18 +2,24 @@
 {% block title %} Blog Archive {% endblock %}
 {% block content %}
     <h1> My Blog Archive </h1>
-        {% for post in posts %}
+        {% with object_list as post_list %}
+        {% for post in post_list %}
             <div class="post">
                 <h2>
-                    <a href="{{post.get_absolute_url}}">{{post.title}}</a>
                 </h2>
-                <p>{{post.description}}</p>
+                <p>{{post.title}}</p>
                 <p>
                     Posted on
-                    <time datetime="{{post.created|date:"c"}}">
-                        {{post.created|date}}
+                    <time datetime="{{post.created_at|date:"c"}}">
+                        {{post.created_at|date}}
                     </time>
                 </p>
+                
             </div>
+            <!--<pre class="prettyprint linenums"></pre>-->
+        {% endfor %}
+        {% endwith %}
+        {% for category in categoties %}
+            {{ category.name }}
         {% endfor %}
 {% endblock %}
