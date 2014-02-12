@@ -26,9 +26,9 @@ class Category(models.Model):
 
     def __unicode__(self):
         if self.parent:                                                                                                  
-            return u'%s:%s' % (self.parent, self.name)
+            return u'Category:%s:%s' % (self.parent, self.name)
         else:
-            return u'%s' % (self.name)
+            return u'Category:%s' % (self.name)
 
     class Meta:
         ordering = ['rank', '-created_at']
@@ -95,10 +95,6 @@ class Post(models.Model):
     def __unicode__(self):
         return u'%s' %self.title
 
-    def get_absolute_url(self):
-        print self.slug
-        return u'%s' %(self.alias)
-    
     def tag_list(self):
         '''
         标签
@@ -110,14 +106,16 @@ class Post(models.Model):
         '''
         当前页的数量
         '''
-        return cls.objects.values('title', 'alias').filter(status=0).order_by('-created_time')[:num]
+        return cls.objects.values('title', 'alias').filter(status=0)[:num]
+        #return cls.objects.values('title', 'alias').filter(status=0).order_by('-created_at')[:num]
 
     @classmethod
     def get_hot_posts(cls, num):
         '''
         点击率高
         '''
-        return cls.objects.values('title', 'alias').filter(status=0).order_by('-created_time')[:num]
+        return cls.objects.values('title', 'alias', 'summary').filter(status=0)[:num]
+        #return cls.objects.values('title', 'alias').filter(status=0).order_by('-created_at')[:num]
 
 
     def get_related_posts(self):

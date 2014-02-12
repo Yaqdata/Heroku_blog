@@ -3,4 +3,7 @@ venv
 *.pyc
 .project 
 .pydevproject
+.gitignore~
+*.py~
+*.html~
 staticfiles
