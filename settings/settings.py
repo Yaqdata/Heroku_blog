@@ -13,7 +13,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import sys
-print BASE_DIR
 sys.path.append(BASE_DIR+"/website/")
 sys.path.append(BASE_DIR+"/module/")
 
@@ -94,7 +93,6 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     static_path,
 )
-print TEMPLATE_DIRS
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 import dj_database_url

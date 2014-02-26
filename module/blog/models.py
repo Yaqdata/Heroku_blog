@@ -58,7 +58,7 @@ class Page(models.Model):
     updated_at = models.DateTimeField(u'更新时间', auto_now=True)
     
     def __unicode__(self):
-        return u'%s' %title
+        return u'%s' %self.title
 
     class Meta:
         ordering = ['rank', '-created_at']

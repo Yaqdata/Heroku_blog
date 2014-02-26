@@ -10,16 +10,13 @@ class BaseView(object):
     def get_context_data(self, *args, **kwargs):
         '''
         '''
-        print args
-        print kwargs
         context = super(BaseView, self).get_context_data(**kwargs)
         try:
             context['categories'] = Category.available_list()
-            #context['pages'] = Page.objects.filter(status=0)
+            context['pages'] = Page.objects.filter(status=0)
             #context['hot_posts'] = Post.get_hot_posts(9)
             #context['online_num'] = 9
         except Exception, e:
-            print e
             pass
             #logger.exception(u'加载信息出错', e)
         return context
@@ -30,7 +27,6 @@ class IndexView(BaseView, ListView):
     query = None
     template_name = 'base.html'
     def get_context_data(self, **kwargs):
-        print super(IndexView, self).get_context_data(**kwargs)
         return super(IndexView, self).get_context_data(**kwargs)
 
     def get_queryset(self):
@@ -49,13 +45,11 @@ class CategoryView(BaseView, ListView):
     '''
     object = None
     template_name = 'blog/index.html'
-#    queryset = Post.objects.filter(status=0)
 
     def get_queryset(self):
         alias = self.kwargs.get('alias')
         try:
             self.category = Category.objects.get(alias=alias)
-            print 'self.category is %s' %type(self.category)
         except Category.DoesNotExist:
             return []
 
@@ -67,13 +61,6 @@ class CategoryView(BaseView, ListView):
             kwargs['title'] = self.category.name + '|'
 
         return super(CategoryView, self).get_context_data(**kwargs)
-
-#class TagsListView(IndexView):
-#    '''
-#    '''
-#    def get_queryset(self):
-#        tag = self.kwargs.get('tag')
-#        posts = Post.objects.difer('content', 'content_html').filter()
 
 class PostDetailView(BaseView, DetailView):
     '''
@@ -99,4 +86,24 @@ class PostDetailView(BaseView, DetailView):
         return super(PostDetailView, self).get(request, *args, **kwargs)
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
+        return context
+
+class PageDetailView(BaseView, DetailView):
+    '''
+    '''
+    object = None
+    template_name = 'blog/page.html'
+    queryset = Page.objects.filter(status=0)
+    slug_field = 'alias'
+    def get(self, request, *args, **kwargs):
+        alias = self.kwargs.get('slug')
+        try:
+            post = self.queryset.get(alias=alias)
+        except Page.DoesNotExist:
+
+            context = super(PageDetailView, self).get_context_data(**kwargs)
+            return render(request, '404.html', context)
+        return super(PageDetailView, self).get(request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super(PageDetailView, self).get_context_data(**kwargs)
         return context

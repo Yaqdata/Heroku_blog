@@ -94,11 +94,9 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     static_path,
 )
-print TEMPLATE_DIRS
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 SITE_DOMAIN = '127.0.0.1:8086'
 MEDIA_URL = 'http://%s/' % (SITE_DOMAIN)
 STATIC_URL = '/static/'
-print STATIC_URL

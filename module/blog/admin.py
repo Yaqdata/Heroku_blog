@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from blog.models import Post, Category
+from blog.models import Post, Category, Page
 
 class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name', 'alias')
@@ -20,3 +20,10 @@ class PostAdmin(admin.ModelAdmin):
     #prepopulated_fields = {'slug':('title',)}
 
 admin.site.register(Post, PostAdmin)
+
+class PageAdmin(admin.ModelAdmin):
+
+    search_fields = ['title', 'alias']
+    fields = ['content', 'author', 'title', 'alias', 'status']
+    
+admin.site.register(Page, PageAdmin)
